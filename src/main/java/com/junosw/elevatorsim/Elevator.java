@@ -151,13 +151,8 @@ public class Elevator {
             return false;
         }
 
-        if (traveling == TRAVELING_UP && floor > currentFloor && floor < destinationFloor) {
-            return true;
-        } else if (traveling == TRAVELING_DOWN && floor < currentFloor && floor > destinationFloor) {
-            return true;
-        } else {
-            return false;
-        }
+        return (traveling == TRAVELING_UP && floor > currentFloor && floor < destinationFloor) ||
+                (traveling == TRAVELING_DOWN && floor < currentFloor && floor > destinationFloor);
     }
 
     /**

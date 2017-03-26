@@ -87,13 +87,13 @@ public class SimElevatorController implements ElevatorController {
             } else if (elevatorEntry.getKey().willPassFloor(toFloor) && !elevatorEntry.getKey().unoccupied()) {
                 // elevator tells us if it will pass a floor en route or not.  If it will and it is occupied, use it
                 return elevatorEntry.getKey();
-            } else {
+            } //else {
                 // running out of implementation time here..
 
                 // basically we would need to find the "closest" unoccupied elevator by keeping track of the
                 // absolute value of the difference between the current location of unoccupied elevators and toFloor
                 // and end up returning that one when the while loop finishes
-            }
+            //}
         }
 
         // do the magic that gets us the right elevator
