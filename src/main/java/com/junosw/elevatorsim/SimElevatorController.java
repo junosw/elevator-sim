@@ -1,5 +1,6 @@
 package com.junosw.elevatorsim;
 
+import java.security.InvalidKeyException;
 import java.util.HashMap;
 
 /**
@@ -26,11 +27,17 @@ public class SimElevatorController implements ElevatorController {
     }
 
     /**
-     * Elevators report back to us what their state is e.g. what floor they're on, if they are traveling, etc.
+     * Elevators report back to us what floor they're on when they are traveling
      * @param elevator
      */
-    public void setElevatorState(final Elevator elevator) {
+    public void setCurrentFloor(final Elevator elevator, final int floor) throws InvalidKeyException {
 
+        // general sanity check - we should not have non-existent or elevators we didn't create reporting to us
+        if (!elevatorFloorMap.containsKey(elevator)) {
+            throw new InvalidKeyException("Elevator not found in controller map");
+        }
+
+        elevatorFloorMap.put(elevator, floor);
     }
 
     /**

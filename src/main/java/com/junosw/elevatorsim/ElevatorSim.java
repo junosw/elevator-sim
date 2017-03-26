@@ -31,6 +31,7 @@ public final class ElevatorSim {
 
         // call an elevator
         // hardcoded value for dev - call one elevator to floor 5
-        controller.callElevator(5);
+        final int toFloor = 5;
+        controller.callElevator(toFloor);
     }
 }
