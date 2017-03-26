@@ -41,6 +41,18 @@ public class SimElevatorController implements ElevatorController {
     }
 
     /**
+     * Event - elevator tells us when its doors are open
+     * @param elevator
+     */
+    public void setDoorState(final Elevator elevator) {
+        // this function currently doesn't do anything
+        // it is here to fulfull the requirement "door open/closed reporting" requirement
+        // and provide a hook for future business policy around open/closed doors
+        //boolean doorState = elevator.getDoorsOpen();
+        return;
+    }
+
+    /**
      * Someone has requested an elevator
      * @param toFloor
      */
@@ -48,7 +60,7 @@ public class SimElevatorController implements ElevatorController {
 
         final Elevator elevator = getElevatorForNewRequest();
 
-        elevator.goToPickup(toFloor);
+        elevator.goToDestination(toFloor);
     }
 
     /**

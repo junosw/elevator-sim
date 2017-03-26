@@ -8,4 +8,5 @@ import java.security.InvalidKeyException;
 public interface ElevatorController {
 
     void setCurrentFloor(Elevator elevator, int floor) throws InvalidKeyException;
+    void setDoorState(Elevator elevator);
 }
