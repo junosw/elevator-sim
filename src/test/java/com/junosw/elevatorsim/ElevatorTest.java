@@ -6,6 +6,9 @@ import java.security.InvalidParameterException;
 
 /**
  * Testing the Elevator object
+ *
+ * Typically there would be a lot more unit testing for all of the classes
+ * but at this point the focus is on design
  */
 public class ElevatorTest {
 

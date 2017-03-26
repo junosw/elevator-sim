@@ -43,6 +43,15 @@ public class Elevator {
     // doors open?
     private boolean doorsOpen = false;
 
+    // not implemented due to time constraints but the elevator would keep track of trips and floors passed here
+    // private int trips = 0;
+    // private int floors = 0;
+    // private static final int TRIPS_UNTIL_SERVICE_REQUIRED = 100;
+    // private boolean serviceRequired = false;
+    //
+    // then we would raise an event to the controller when service is required as well as "disable itself"
+    // by setting serviceRequired to TRUE and checking this flag where appropriate e.g. goToDestination
+
 
     /**
      * Pojo c'tor for creating a new Elevator
@@ -60,6 +69,11 @@ public class Elevator {
 
     /**
      * Tell this elevator to pick up a passenger on the specified floor
+     *
+     * Naturally, this isn't currently keeping track of more than one destination.
+     * We would implement an ordered stack for that where the closest floor in the "current direction" would
+     * be the next destination then pop the next destination off the stack once we arrive and doors close again
+     *
      * @param floor
      */
     public void goToDestination(final int floor) {
@@ -124,6 +138,43 @@ public class Elevator {
 
         // open the doors!
         setDoorState(DOORS_OPEN);
+    }
+
+    /**
+     * Tests whether or not a traveling elevator will pass a floor
+     *
+     * @param floor - floor to test against
+     * @return TRUE if it will pass the floor en route, false otherwise
+     */
+    public boolean willPassFloor(final int floor) {
+        if (!isTraveling()) {
+            return false;
+        }
+
+        if (traveling == TRAVELING_UP && floor > currentFloor && floor < destinationFloor) {
+            return true;
+        } else if (traveling == TRAVELING_DOWN && floor < currentFloor && floor > destinationFloor) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Return whether or not this elevator is traveling
+     * @return
+     */
+    public boolean isTraveling() {
+        return traveling != NOT_TRAVELING;
+    }
+
+    /**
+     * Return whether or not this elevator is occupied
+     * @return
+     */
+    public boolean unoccupied() {
+        // Unoccupied is defined as NOT traveling AND doors CLOSED
+        return !isTraveling() && (getDoorsOpen() == DOORS_CLOSED);
     }
 
     /**
