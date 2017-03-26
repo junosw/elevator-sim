@@ -19,8 +19,17 @@ public final class ElevatorSim {
         final int desiredNumElevators = DEFAULT_NUMBER_OF_ELEVATORS;
         final int desiredNumFloors = DEFAULT_NUMBER_OF_FLOORS;
 
-
+        runSim(desiredNumElevators, desiredNumFloors);
     }
 
+    /**
+     * Run the simulation
+     */
+    private static void runSim(final int numElevators, final int numFloors) {
 
+        final SimElevatorController controller = new SimElevatorController(numElevators, numFloors);
+
+        
+
+    }
 }
