@@ -29,7 +29,8 @@ public final class ElevatorSim {
 
         final SimElevatorController controller = new SimElevatorController(numElevators, numFloors);
 
-        
-
+        // call an elevator
+        // hardcoded value for dev - call one elevator to floor 5
+        controller.callElevator(5);
     }
 }

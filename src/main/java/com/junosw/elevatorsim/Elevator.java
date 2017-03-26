@@ -1,6 +1,7 @@
 package com.junosw.elevatorsim;
 
 import java.security.InvalidParameterException;
+import java.util.Timer;
 
 /**
  * Represents an Elevator in our sim.
@@ -15,7 +16,7 @@ public class Elevator {
     // the controller we report too
     private final ElevatorController controller;
 
-
+    Timer travelTimer;
     /**
      * Pojo c'tor for creating a new Elevator
      * @param numberOfFloors - number of floors in the building.
@@ -28,6 +29,20 @@ public class Elevator {
 
         this.numberOfFloors = numberOfFloors;
         this.controller = controller;
+
+        // set up the travel timer scheduled task
+        // policy: it takes 5 seconds to move from one floor to the next
+        travelTimer = new Timer();
+
+        travelTimer.schedule(
+            new java.util.TimerTask() {
+                @Override
+                public void run() {
+                    // your code here
+                }
+            },
+            5000
+        );
     }
 
     /**
@@ -37,5 +52,6 @@ public class Elevator {
     public void goToPickup(final int floor) {
 
     }
+
 
 }

@@ -10,6 +10,7 @@ import java.util.HashMap;
  */
 public class SimElevatorController implements ElevatorController {
 
+    // our map of Elevators and what floor they are currently on
     private HashMap<Elevator, Integer> elevatorFloorMap = new HashMap<>();
 
     /**
@@ -30,5 +31,28 @@ public class SimElevatorController implements ElevatorController {
      */
     public void setElevatorState(final Elevator elevator) {
 
+    }
+
+    /**
+     * Someone has requested an elevator
+     * @param toFloor
+     */
+    public void callElevator(final int toFloor) {
+
+        final Elevator elevator = getElevatorForNewRequest();
+
+        elevator.goToPickup(toFloor);
+    }
+
+    /**
+     * Get an elevator for a new ride request.
+     * Will enforce all elevator request requirements
+     * @return
+     */
+    private Elevator getElevatorForNewRequest() {
+        // do the magic that gets us the right elevator
+        // for the purposes of dev, well just return the first
+        // elevator for now to get to the high priority features of the Elevator
+        return elevatorFloorMap.keySet().iterator().next();
     }
 }
