@@ -1,0 +1,42 @@
+group 'com.juno'
+version '1.0'
+
+buildscript {
+    repositories {
+        jcenter()
+
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.4'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: "com.github.johnrengelman.shadow"
+
+targetCompatibility = 1.8
+sourceCompatibility = 1.8
+
+apply from: file("gradle/check.gradle")
+
+repositories {
+    mavenCentral()
+}
+
+shadowJar {
+    baseName = 'war'
+    classifier = null
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+tasks.assemble.finalizedBy shadowJar
+
+tasks.withType(Test) {
+    reports.html.destination = file("${reporting.baseDir}/${name}")
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
